@@ -1,6 +1,5 @@
 package com.craigraw.waylandtester;
 
-import com.sun.javafx.scene.control.skin.resources.ControlResources;
 import javafx.application.Platform;
 import javafx.beans.NamedArg;
 import javafx.geometry.Pos;
@@ -73,8 +72,8 @@ public class CustomTextInputDialog extends Dialog<String> {
 
         dialogPane.contentTextProperty().addListener(o -> updateGrid());
 
-        setTitle(ControlResources.getString("Dialog.confirm.title"));
-        dialogPane.setHeaderText(ControlResources.getString("Dialog.confirm.header"));
+        setTitle("Confirm");
+        dialogPane.setHeaderText("Header Text");
         dialogPane.getStyleClass().add("text-input-dialog");
         dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
