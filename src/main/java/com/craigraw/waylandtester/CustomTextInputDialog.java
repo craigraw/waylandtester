@@ -23,7 +23,6 @@ public class CustomTextInputDialog extends Dialog<String> {
      *
      **************************************************************************/
 
-    private final GridPane grid;
     private final Label label;
     private final TextField textField;
     private final String defaultValue;
@@ -61,32 +60,21 @@ public class CustomTextInputDialog extends Dialog<String> {
 
         this.defaultValue = defaultValue;
 
-        this.grid = new GridPane();
-        this.grid.setHgap(10);
-        //this.grid.setMaxWidth(Double.MAX_VALUE);
-        //this.grid.setAlignment(Pos.CENTER_LEFT);
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.add(label, 0, 0);
+        grid.add(textField, 1, 0);
+        getDialogPane().setContent(grid);
 
         setTitle("Confirm");
         dialogPane.setHeaderText("Header Text");
         dialogPane.getStyleClass().add("text-input-dialog");
         dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-        updateGrid();
-
         setResultConverter((dialogButton) -> {
             ButtonData data = dialogButton == null ? null : dialogButton.getButtonData();
             return data == ButtonData.OK_DONE ? textField.getText() : null;
         });
-    }
-
-    private void updateGrid() {
-        grid.getChildren().clear();
-
-        grid.add(label, 0, 0);
-        grid.add(textField, 1, 0);
-        getDialogPane().setContent(grid);
-
-        //Platform.runLater(() -> textField.requestFocus());
     }
 }
 
