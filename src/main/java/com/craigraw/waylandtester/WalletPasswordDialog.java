@@ -51,30 +51,7 @@ public class WalletPasswordDialog extends Dialog<String> {
         content.getChildren().add(password);
         content.getChildren().add(passwordConfirm);
 
-        if(requirement == PasswordRequirement.UPDATE_SET) {
-            content.getChildren().add(changePassword);
-            changePassword.selectedProperty().addListener((observable, oldValue, newValue) -> {
-                backupExisting.setVisible(!newValue);
-            });
-            changePassword.setSelected(suggestChangePassword);
-        }
-
-        if(requirement == PasswordRequirement.UPDATE_EMPTY || requirement == PasswordRequirement.UPDATE_SET) {
-            backupExisting.managedProperty().bind(backupExisting.visibleProperty());
-            deleteBackups.managedProperty().bind(deleteBackups.visibleProperty());
-            deleteBackups.visibleProperty().bind(backupExisting.visibleProperty().not());
-            content.getChildren().addAll(backupExisting, deleteBackups);
-            backupExisting.setSelected(true);
-            deleteBackups.setSelected(true);
-        }
-
         dialogPane.setContent(content);
-
-        ValidationSupport validationSupport = new ValidationSupport();
-        Platform.runLater( () -> {
-            validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
-            validationSupport.registerValidator(passwordConfirm, (Control c, String newValue) -> ValidationResult.fromErrorIf(c, "Password confirmation does not match", !passwordConfirm.getText().equals(password.getText())));
-        });
 
         okButtonType = new javafx.scene.control.ButtonType(requirement.okButtonText, ButtonBar.ButtonData.OK_DONE);
         dialogPane.getButtonTypes().addAll(okButtonType);
@@ -86,24 +63,6 @@ public class WalletPasswordDialog extends Dialog<String> {
         if(requirement != PasswordRequirement.UPDATE_NEW && requirement != PasswordRequirement.UPDATE_CHANGE) {
             passwordConfirm.setVisible(false);
             passwordConfirm.setManaged(false);
-        }
-
-        if(requirement == PasswordRequirement.UPDATE_NEW || requirement == PasswordRequirement.UPDATE_EMPTY || requirement == PasswordRequirement.UPDATE_CHANGE) {
-            password.textProperty().addListener((observable, oldValue, newValue) -> {
-                if(newValue.isEmpty()) {
-                    okButton.setText("No Password");
-                    passwordConfirm.setVisible(false);
-                    passwordConfirm.setManaged(false);
-                    backupExisting.setVisible(true);
-                    addingPassword = false;
-                } else {
-                    okButton.setText("Set Password");
-                    passwordConfirm.setVisible(true);
-                    passwordConfirm.setManaged(true);
-                    backupExisting.setVisible(false);
-                    addingPassword = true;
-                }
-            });
         }
 
         password.setPromptText("Password");
