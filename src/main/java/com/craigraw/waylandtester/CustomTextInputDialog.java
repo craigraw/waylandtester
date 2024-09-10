@@ -54,13 +54,13 @@ public class CustomTextInputDialog extends Dialog<String> {
 
         // -- textfield
         this.textField = new TextField(defaultValue);
-        this.textField.setMaxWidth(Double.MAX_VALUE);
-        GridPane.setHgrow(textField, Priority.ALWAYS);
-        GridPane.setFillWidth(textField, true);
+        //this.textField.setMaxWidth(Double.MAX_VALUE);
+        //GridPane.setHgrow(textField, Priority.ALWAYS);
+        //GridPane.setFillWidth(textField, true);
 
         // -- label
         label = new Label(dialogPane.getContentText());
-        label.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        //label.setPrefWidth(Region.USE_COMPUTED_SIZE);
         label.textProperty().bind(dialogPane.contentTextProperty());
 
         this.defaultValue = defaultValue;
