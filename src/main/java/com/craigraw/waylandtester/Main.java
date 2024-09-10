@@ -43,13 +43,13 @@ public class Main extends Application {
             throw new IllegalStateException(e);
         }
 
-//        TextInputDialog alert = new TextInputDialog("Enter a value below.");
-//        alert.initOwner(stage.getScene().getWindow());
-//        alert.showAndWait();
+        TextInputDialog alert = new TextInputDialog("Enter a value below.");
+        alert.initOwner(stage.getScene().getWindow());
+        alert.showAndWait();
 
-        WalletPasswordDialog dlg = new WalletPasswordDialog();
-        dlg.initOwner(stage.getScene().getWindow());
-        Optional<String> optionalPassword = dlg.showAndWait();
+//        WalletPasswordDialog dlg = new WalletPasswordDialog();
+//        dlg.initOwner(stage.getScene().getWindow());
+//        Optional<String> optionalPassword = dlg.showAndWait();
     }
 
     private static Button createButton() {
