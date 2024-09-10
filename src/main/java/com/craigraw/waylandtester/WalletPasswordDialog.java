@@ -42,10 +42,6 @@ public class WalletPasswordDialog extends Dialog<String> {
         dialogPane.setPrefWidth(380);
         dialogPane.setPrefHeight(260);
 
-        Glyph lock = new Glyph("FontAwesome", FontAwesome.Glyph.LOCK);
-        lock.setFontSize(50);
-        dialogPane.setGraphic(lock);
-
         final VBox content = new VBox(10);
         content.setPrefHeight(100);
         content.getChildren().add(password);
@@ -64,10 +60,6 @@ public class WalletPasswordDialog extends Dialog<String> {
             passwordConfirm.setVisible(false);
             passwordConfirm.setManaged(false);
         }
-
-        password.setPromptText("Password");
-        Platform.runLater(password::requestFocus);
-        passwordConfirm.setPromptText("Password Confirmation");
 
         setResultConverter(dialogButton -> dialogButton == okButtonType ? password.getText() : null);
     }
