@@ -13,13 +13,9 @@ import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.decoration.StyleClassValidationDecoration;
 
 public class WalletPasswordDialog extends Dialog<String> {
-    private final ButtonType okButtonType;
     private final PasswordRequirement requirement;
     private final CustomPasswordField password;
     private final CustomPasswordField passwordConfirm;
-    private final CheckBox backupExisting;
-    private final CheckBox changePassword;
-    private final CheckBox deleteBackups;
     private boolean addingPassword;
 
     public WalletPasswordDialog(String walletName, PasswordRequirement requirement) {
@@ -30,9 +26,6 @@ public class WalletPasswordDialog extends Dialog<String> {
         this.requirement = requirement;
         this.password = new CustomPasswordField();
         this.passwordConfirm = new CustomPasswordField();
-        this.backupExisting = new CheckBox("Backup existing wallet first");
-        this.changePassword = new CheckBox("Change password");
-        this.deleteBackups = new CheckBox("Delete any backups");
 
         final DialogPane dialogPane = getDialogPane();
         //setTitle("Wallet Password" + (walletName != null ? " - " + walletName : ""));
@@ -49,8 +42,8 @@ public class WalletPasswordDialog extends Dialog<String> {
 
         dialogPane.setContent(content);
 
-        okButtonType = new javafx.scene.control.ButtonType(requirement.okButtonText, ButtonBar.ButtonData.OK_DONE);
-        dialogPane.getButtonTypes().addAll(okButtonType);
+        //okButtonType = new javafx.scene.control.ButtonType(requirement.okButtonText, ButtonBar.ButtonData.OK_DONE);
+        //dialogPane.getButtonTypes().addAll(okButtonType);
 //        Button okButton = (Button) dialogPane.lookupButton(okButtonType);
 //        okButton.setPrefWidth(130);
 //        BooleanBinding isInvalid = Bindings.createBooleanBinding(() -> (requirement == PasswordRequirement.LOAD && password.getText().isEmpty()) || (passwordConfirm.isVisible() && !password.getText().equals(passwordConfirm.getText())), password.textProperty(), passwordConfirm.textProperty());
@@ -61,19 +54,7 @@ public class WalletPasswordDialog extends Dialog<String> {
 //            passwordConfirm.setManaged(false);
 //        }
 
-        setResultConverter(dialogButton -> dialogButton == okButtonType ? password.getText() : null);
-    }
-
-    public boolean isBackupExisting() {
-        return !(addingPassword || isChangePassword()) && backupExisting.isSelected();
-    }
-
-    public boolean isChangePassword() {
-        return changePassword.isSelected();
-    }
-
-    public boolean isDeleteBackups() {
-        return (addingPassword || isChangePassword()) && deleteBackups.isSelected();
+        //setResultConverter(dialogButton -> dialogButton == okButtonType ? password.getText() : null);
     }
 
     public enum PasswordRequirement {
