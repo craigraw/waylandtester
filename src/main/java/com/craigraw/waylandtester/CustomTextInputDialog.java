@@ -8,6 +8,7 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * A dialog that shows a text input control to the user.
@@ -29,11 +30,19 @@ public class CustomTextInputDialog extends Dialog<String> {
         label = new Label(dialogPane.getContentText());
         label.textProperty().bind(dialogPane.contentTextProperty());
 
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.add(label, 0, 0);
-        grid.add(textField, 1, 0);
-        getDialogPane().setContent(grid);
+        if(useVbox) {
+            VBox vBox = new VBox();
+            vBox.setPrefHeight(100);
+            vBox.getChildren().add(label);
+            vBox.getChildren().add(textField);
+            getDialogPane().setContent(vBox);
+        } else {
+            GridPane grid = new GridPane();
+            grid.setHgap(10);
+            grid.add(label, 0, 0);
+            grid.add(textField, 1, 0);
+            getDialogPane().setContent(grid);
+        }
 
         setTitle("Confirm");
         dialogPane.setHeaderText("Header Text");
