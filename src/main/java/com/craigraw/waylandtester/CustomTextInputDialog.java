@@ -54,13 +54,9 @@ public class CustomTextInputDialog extends Dialog<String> {
 
         // -- textfield
         this.textField = new TextField(defaultValue);
-        //this.textField.setMaxWidth(Double.MAX_VALUE);
-        //GridPane.setHgrow(textField, Priority.ALWAYS);
-        //GridPane.setFillWidth(textField, true);
 
         // -- label
         label = new Label(dialogPane.getContentText());
-        //label.setPrefWidth(Region.USE_COMPUTED_SIZE);
         label.textProperty().bind(dialogPane.contentTextProperty());
 
         this.defaultValue = defaultValue;
@@ -69,8 +65,6 @@ public class CustomTextInputDialog extends Dialog<String> {
         this.grid.setHgap(10);
         this.grid.setMaxWidth(Double.MAX_VALUE);
         this.grid.setAlignment(Pos.CENTER_LEFT);
-
-        dialogPane.contentTextProperty().addListener(o -> updateGrid());
 
         setTitle("Confirm");
         dialogPane.setHeaderText("Header Text");
@@ -84,38 +78,6 @@ public class CustomTextInputDialog extends Dialog<String> {
             return data == ButtonData.OK_DONE ? textField.getText() : null;
         });
     }
-
-
-
-    /* ************************************************************************
-     *
-     * Public API
-     *
-     **************************************************************************/
-
-    /**
-     * Returns the {@link TextField} used within this dialog.
-     * @return the {@link TextField} used within this dialog
-     */
-    public final TextField getEditor() {
-        return textField;
-    }
-
-    /**
-     * Returns the default value that was specified in the constructor.
-     * @return the default value that was specified in the constructor
-     */
-    public final String getDefaultValue() {
-        return defaultValue;
-    }
-
-
-
-    /* ************************************************************************
-     *
-     * Private Implementation
-     *
-     **************************************************************************/
 
     private void updateGrid() {
         grid.getChildren().clear();
