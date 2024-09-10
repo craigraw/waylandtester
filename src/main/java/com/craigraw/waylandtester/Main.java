@@ -18,7 +18,17 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class Main extends Application {
+    private static boolean initOwner = false;
+    private static boolean useVbox = false;
+
     public static void main(String[] args) {
+        if(args.length > 0) {
+            initOwner = Boolean.parseBoolean(args[0]);
+        }
+        if(args.length > 1) {
+            useVbox = Boolean.parseBoolean(args[1]);
+        }
+
         launch(args);
     }
 
@@ -43,8 +53,11 @@ public class Main extends Application {
             throw new IllegalStateException(e);
         }
 
-        CustomTextInputDialog alert = new CustomTextInputDialog(true);
-        alert.initOwner(stage.getScene().getWindow());
+        CustomTextInputDialog alert = new CustomTextInputDialog(useVbox);
+        if(initOwner) {
+            alert.initOwner(stage.getScene().getWindow());
+        }
+        
         alert.showAndWait();
 
 //        WalletPasswordDialog dlg = new WalletPasswordDialog();
