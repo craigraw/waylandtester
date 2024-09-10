@@ -42,9 +42,13 @@ public class Main extends Application {
             throw new IllegalStateException(e);
         }
 
-        WalletPasswordDialog dlg = new WalletPasswordDialog("Test", WalletPasswordDialog.PasswordRequirement.LOAD);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This is a modal dialog.");
+        alert.initOwner(stage.getScene().getWindow());
+        alert.showAndWait();
+
+        //WalletPasswordDialog dlg = new WalletPasswordDialog("Test", WalletPasswordDialog.PasswordRequirement.LOAD);
         //dlg.initOwner(stage.getScene().getWindow());
-        Optional<String> optionalPassword = dlg.showAndWait();
+        //Optional<String> optionalPassword = dlg.showAndWait();
     }
 
     private static Button createButton() {
