@@ -16,49 +16,18 @@ import javafx.scene.layout.Region;
  * @since JavaFX 8u40
  */
 public class CustomTextInputDialog extends Dialog<String> {
-
-    /* ************************************************************************
-     *
-     * Fields
-     *
-     **************************************************************************/
-
     private final Label label;
     private final TextField textField;
-    private final String defaultValue;
 
-
-
-    /* ************************************************************************
-     *
-     * Constructors
-     *
-     **************************************************************************/
-
-    /**
-     * Creates a new TextInputDialog without a default value entered into the
-     * dialog {@link TextField}.
-     */
-    public CustomTextInputDialog() {
-        this("");
-    }
-
-    /**
-     * Creates a new TextInputDialog with the default value entered into the
-     * dialog {@link TextField}.
-     * @param defaultValue the default value entered into the dialog
-     */
-    public CustomTextInputDialog(@NamedArg("defaultValue") String defaultValue) {
+    public CustomTextInputDialog(boolean useVbox) {
         final DialogPane dialogPane = getDialogPane();
 
         // -- textfield
-        this.textField = new TextField(defaultValue);
+        this.textField = new TextField();
 
         // -- label
         label = new Label(dialogPane.getContentText());
         label.textProperty().bind(dialogPane.contentTextProperty());
-
-        this.defaultValue = defaultValue;
 
         GridPane grid = new GridPane();
         grid.setHgap(10);
