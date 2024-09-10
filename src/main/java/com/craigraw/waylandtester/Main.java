@@ -22,8 +22,8 @@ public class Main extends Application {
 
         primaryStage.setTitle("Hello World!");
 
-        VBox root = new VBox();
-        for(int i = 0; i < 20; i++) {
+        StackPane root = new StackPane();
+        for(int i = 0; i < 2000; i++) {
             root.getChildren().add(createButton());
         }
         primaryStage.setScene(new Scene(root, 300, 600));
