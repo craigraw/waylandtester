@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -41,8 +42,9 @@ public class Main extends Application {
             throw new IllegalStateException(e);
         }
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This is a modal dialog.");
-        alert.showAndWait();
+        WalletPasswordDialog dlg = new WalletPasswordDialog("Test", WalletPasswordDialog.PasswordRequirement.LOAD);
+        dlg.initOwner(stage.getScene().getWindow());
+        Optional<String> optionalPassword = dlg.showAndWait();
     }
 
     private static Button createButton() {
