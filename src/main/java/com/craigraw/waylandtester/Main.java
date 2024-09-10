@@ -43,7 +43,7 @@ public class Main extends Application {
             throw new IllegalStateException(e);
         }
 
-        TextInputDialog alert = new TextInputDialog("Enter a value below.");
+        CustomTextInputDialog alert = new CustomTextInputDialog("Enter a value below.");
         alert.initOwner(stage.getScene().getWindow());
         alert.showAndWait();
 
