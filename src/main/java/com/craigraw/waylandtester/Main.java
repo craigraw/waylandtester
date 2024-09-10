@@ -23,7 +23,7 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World!");
 
         StackPane root = new StackPane();
-        for(int i = 0; i < 2000; i++) {
+        for(int i = 0; i < 20000; i++) {
             root.getChildren().add(createButton());
         }
         primaryStage.setScene(new Scene(root, 300, 600));
