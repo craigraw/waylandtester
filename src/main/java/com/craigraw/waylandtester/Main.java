@@ -47,7 +47,7 @@ public class Main extends Application {
 //        alert.initOwner(stage.getScene().getWindow());
 //        alert.showAndWait();
 
-        WalletPasswordDialog dlg = new WalletPasswordDialog("Test", WalletPasswordDialog.PasswordRequirement.LOAD);
+        WalletPasswordDialog dlg = new WalletPasswordDialog();
         dlg.initOwner(stage.getScene().getWindow());
         Optional<String> optionalPassword = dlg.showAndWait();
     }

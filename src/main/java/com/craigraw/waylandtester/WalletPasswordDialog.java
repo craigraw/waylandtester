@@ -13,27 +13,15 @@ import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.decoration.StyleClassValidationDecoration;
 
 public class WalletPasswordDialog extends Dialog<String> {
-    private final PasswordRequirement requirement;
     private final CustomPasswordField password;
     private final CustomPasswordField passwordConfirm;
-    private boolean addingPassword;
 
-    public WalletPasswordDialog(String walletName, PasswordRequirement requirement) {
-        this(walletName, requirement, false);
-    }
-
-    public WalletPasswordDialog(String walletName, PasswordRequirement requirement, boolean suggestChangePassword) {
-        this.requirement = requirement;
+    public WalletPasswordDialog() {
         this.password = new CustomPasswordField();
         this.passwordConfirm = new CustomPasswordField();
 
         final DialogPane dialogPane = getDialogPane();
-        //setTitle("Wallet Password" + (walletName != null ? " - " + walletName : ""));
-        //dialogPane.setHeaderText(walletName != null ? requirement.description.substring(0, requirement.description.length() - 1) + " for " + walletName + ":" : requirement.description);
-        //dialogPane.getStylesheets().add(Main.class.getResource("general.css").toExternalForm());
         dialogPane.getButtonTypes().addAll(ButtonType.CANCEL);
-        //dialogPane.setPrefWidth(380);
-        //dialogPane.setPrefHeight(260);
 
         final VBox content = new VBox(10);
         content.setPrefHeight(100);
@@ -41,36 +29,6 @@ public class WalletPasswordDialog extends Dialog<String> {
         content.getChildren().add(passwordConfirm);
 
         dialogPane.setContent(content);
-
-        //okButtonType = new javafx.scene.control.ButtonType(requirement.okButtonText, ButtonBar.ButtonData.OK_DONE);
-        //dialogPane.getButtonTypes().addAll(okButtonType);
-//        Button okButton = (Button) dialogPane.lookupButton(okButtonType);
-//        okButton.setPrefWidth(130);
-//        BooleanBinding isInvalid = Bindings.createBooleanBinding(() -> (requirement == PasswordRequirement.LOAD && password.getText().isEmpty()) || (passwordConfirm.isVisible() && !password.getText().equals(passwordConfirm.getText())), password.textProperty(), passwordConfirm.textProperty());
-//        okButton.disableProperty().bind(isInvalid);
-
-//        if(requirement != PasswordRequirement.UPDATE_NEW && requirement != PasswordRequirement.UPDATE_CHANGE) {
-//            passwordConfirm.setVisible(false);
-//            passwordConfirm.setManaged(false);
-//        }
-
-        //setResultConverter(dialogButton -> dialogButton == okButtonType ? password.getText() : null);
-    }
-
-    public enum PasswordRequirement {
-        LOAD("Enter the wallet password:", "Unlock"),
-        UPDATE_NEW("Add a password to the wallet?\nLeave empty for no password:", "No Password"),
-        UPDATE_EMPTY("This wallet has no password.\nAdd a password to the wallet?\nLeave empty for no password:", "No Password"),
-        UPDATE_SET("Re-enter the wallet password:", "Verify Password"),
-        UPDATE_CHANGE("Enter the new wallet password.\nLeave empty for no password:", "No Password");
-
-        private final String description;
-        private final String okButtonText;
-
-        PasswordRequirement(String description, String okButtonText) {
-            this.description = description;
-            this.okButtonText = okButtonText;
-        }
     }
 }
 
