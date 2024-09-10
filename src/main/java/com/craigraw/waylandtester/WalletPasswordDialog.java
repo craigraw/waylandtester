@@ -35,12 +35,12 @@ public class WalletPasswordDialog extends Dialog<String> {
         this.deleteBackups = new CheckBox("Delete any backups");
 
         final DialogPane dialogPane = getDialogPane();
-        setTitle("Wallet Password" + (walletName != null ? " - " + walletName : ""));
-        dialogPane.setHeaderText(walletName != null ? requirement.description.substring(0, requirement.description.length() - 1) + " for " + walletName + ":" : requirement.description);
+        //setTitle("Wallet Password" + (walletName != null ? " - " + walletName : ""));
+        //dialogPane.setHeaderText(walletName != null ? requirement.description.substring(0, requirement.description.length() - 1) + " for " + walletName + ":" : requirement.description);
         //dialogPane.getStylesheets().add(Main.class.getResource("general.css").toExternalForm());
         dialogPane.getButtonTypes().addAll(ButtonType.CANCEL);
-        dialogPane.setPrefWidth(380);
-        dialogPane.setPrefHeight(260);
+        //dialogPane.setPrefWidth(380);
+        //dialogPane.setPrefHeight(260);
 
         final VBox content = new VBox(10);
         content.setPrefHeight(100);
