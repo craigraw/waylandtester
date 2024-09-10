@@ -43,7 +43,7 @@ public class Main extends Application {
         }
 
         WalletPasswordDialog dlg = new WalletPasswordDialog("Test", WalletPasswordDialog.PasswordRequirement.LOAD);
-        dlg.initOwner(stage.getScene().getWindow());
+        //dlg.initOwner(stage.getScene().getWindow());
         Optional<String> optionalPassword = dlg.showAndWait();
     }
 
