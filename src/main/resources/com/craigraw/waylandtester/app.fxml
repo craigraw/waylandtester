@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.StatusBar?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.shape.Rectangle?>
+<?import impl.org.controlsfx.skin.DecorationPane?>
+
+<?import com.craigraw.waylandtester.UnlabeledToggleSwitch?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200" minWidth="350" prefHeight="770.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <MenuBar useSystemMenuBar="true">
+            <menus>
+                <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="New Wallet" accelerator="Shortcut+N"/>
+                        <MenuItem mnemonicParsing="false" text="Open Wallet..." accelerator="Shortcut+O"/>
+                        <Menu mnemonicParsing="false" text="Open Transaction">
+                            <items>
+                                <MenuItem text="File..." accelerator="Shortcut+F"/>
+                                <MenuItem fx:id="openTransactionIdItem" text="From ID..." accelerator="Shortcut+I"/>
+                                <MenuItem text="From Text..." accelerator="Shortcut+T"/>
+                                <MenuItem text="From QR..." accelerator="Shortcut+U"/>
+                                <!-- <MenuItem text="Examples"/> -->
+                            </items>
+                        </Menu>
+                        <MenuItem fx:id="saveTransaction" mnemonicParsing="false" text="Save Transaction..." accelerator="Shortcut+S"/>
+                        <MenuItem fx:id="showTransaction" mnemonicParsing="false" text="Show Transaction as QR..."/>
+                        <Menu fx:id="savePSBT" mnemonicParsing="false" text="Save PSBT">
+                            <MenuItem fx:id="savePSBTBinary" text="As Binary..." accelerator="Shortcut+S"/>
+                            <MenuItem text="As Base64..."/>
+                            <Menu text="To Clipboard">
+                                <MenuItem text="As Hex"/>
+                                <MenuItem text="As Base64"/>
+                            </Menu>
+                            <Menu text="Without Xpubs">
+                                <MenuItem text="As Binary..."/>
+                                <MenuItem text="As Base64..."/>
+                            </Menu>
+                        </Menu>
+                        <MenuItem fx:id="showPSBT" mnemonicParsing="false" text="Show PSBT as QR..."/>
+                        <SeparatorMenuItem />
+                        <MenuItem mnemonicParsing="false" text="Import Wallet..."/>
+                        <MenuItem fx:id="exportWallet" mnemonicParsing="false" text="Export Wallet..."/>
+                        <SeparatorMenuItem styleClass="osxHide" />
+                        <MenuItem styleClass="osxHide" mnemonicParsing="false" text="Preferences..." accelerator="Shortcut+P"/>
+                        <SeparatorMenuItem />
+                        <MenuItem fx:id="renameWallet" mnemonicParsing="false" text="Rename Wallet..."/>
+                        <MenuItem fx:id="deleteWallet" mnemonicParsing="false" text="Delete Wallet..."/>
+                        <MenuItem fx:id="closeTab" mnemonicParsing="false" text="Close Tab" accelerator="Shortcut+W"/>
+                        <MenuItem styleClass="osxHide" mnemonicParsing="false" text="Quit" accelerator="Shortcut+Q"/>
+                    </items>
+                </Menu>
+                <fx:define>
+                    <ToggleGroup fx:id="bitcoinUnit"/>
+                </fx:define>
+                <fx:define>
+                    <ToggleGroup fx:id="unitFormat"/>
+                </fx:define>
+                <fx:define>
+                    <ToggleGroup fx:id="theme"/>
+                </fx:define>
+                <Menu fx:id="viewMenu" mnemonicParsing="false" text="View">
+                    <items>
+                        <Menu mnemonicParsing="false" text="Bitcoin Unit">
+                            <items>
+                                <RadioMenuItem mnemonicParsing="false" text="Auto" toggleGroup="$bitcoinUnit"/>
+                                <RadioMenuItem mnemonicParsing="false" text="BTC" toggleGroup="$bitcoinUnit"/>
+                                <RadioMenuItem mnemonicParsing="false" text="sats" toggleGroup="$bitcoinUnit"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Unit Format">
+                            <items>
+                                <RadioMenuItem mnemonicParsing="false" text="1,234.56" toggleGroup="$unitFormat"/>
+                                <RadioMenuItem mnemonicParsing="false" text="1.234,56" toggleGroup="$unitFormat"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Theme">
+                            <items>
+                                <RadioMenuItem mnemonicParsing="false" text="Light" toggleGroup="$theme"/>
+                                <RadioMenuItem mnemonicParsing="false" text="Dark" toggleGroup="$theme"/>
+                            </items>
+                        </Menu>
+                        <SeparatorMenuItem />
+                        <CheckMenuItem fx:id="openWalletsInNewWindows" mnemonicParsing="false" text="Open Wallets In New Windows"/>
+                        <CheckMenuItem fx:id="hideEmptyUsedAddresses" mnemonicParsing="false" text="Hide Empty Used Addresses"/>
+                        <CheckMenuItem fx:id="useHdCameraResolution" mnemonicParsing="false" text="Use HD Camera Resolution"/>
+                        <CheckMenuItem fx:id="showLoadingLog" mnemonicParsing="false" text="Show Wallet Loading Log" />
+                        <CheckMenuItem fx:id="showTxHex" mnemonicParsing="false" text="Show Transaction Hex"/>
+                        <SeparatorMenuItem />
+                        <MenuItem fx:id="minimizeToTray" mnemonicParsing="false" text="Minimize to System Tray" accelerator="Shortcut+Y"/>
+                        <MenuItem fx:id="lockWallet" mnemonicParsing="false" text="Lock Wallet" accelerator="Shortcut+L"/>
+                        <MenuItem fx:id="lockAllWallets" mnemonicParsing="false" text="Lock All Wallets" accelerator="Shortcut+Shift+L"/>
+                        <SeparatorMenuItem />
+                        <MenuItem fx:id="searchWallet" mnemonicParsing="false" text="Search Wallet" accelerator="Shortcut+Shift+S"/>
+                        <MenuItem fx:id="searchAllWallets" mnemonicParsing="false" text="Search All Wallets" accelerator="Shortcut+Shift+Alt+S"/>
+                        <SeparatorMenuItem />
+                        <MenuItem fx:id="showWalletSummary" mnemonicParsing="false" text="Show Wallet Summary"/>
+                        <MenuItem fx:id="showAllWalletsSummary" mnemonicParsing="false" text="Show All Wallets Summary"/>
+                        <SeparatorMenuItem />
+                        <MenuItem fx:id="refreshWallet" mnemonicParsing="false" text="Refresh Wallet" accelerator="Shortcut+R"/>
+                    </items>
+                </Menu>
+                <Menu fx:id="toolsMenu" mnemonicParsing="false" text="Tools">
+                    <MenuItem mnemonicParsing="false" text="Sign/Verify Message" accelerator="Shortcut+M"/>
+                    <MenuItem fx:id="sendToMany" mnemonicParsing="false" text="Send To Many"/>
+                    <MenuItem fx:id="sweepPrivateKey" mnemonicParsing="false" text="Sweep Private Key"/>
+                    <SeparatorMenuItem />
+                    <MenuItem fx:id="showPayNym" mnemonicParsing="false" text="Show PayNym"/>
+                    <SeparatorMenuItem />
+                    <Menu fx:id="switchServer" text="Switch Server"/>
+                    <MenuItem mnemonicParsing="false" text="Verify Download" />
+                    <MenuItem styleClass="osxHide,windowsHide" mnemonicParsing="false" text="Install Udev Rules"/>
+                    <CheckMenuItem fx:id="preventSleep" mnemonicParsing="false" text="Prevent Computer Sleep"/>
+                    <Menu fx:id="restart" mnemonicParsing="false" text="Restart In" />
+                </Menu>
+                <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
+                    <MenuItem mnemonicParsing="false" text="Show Introduction"/>
+                    <MenuItem mnemonicParsing="false" text="Show Online Documentation"/>
+                    <MenuItem mnemonicParsing="false" text="Show Log File"/>
+                    <MenuItem mnemonicParsing="false" text="Get Support"/>
+                    <MenuItem mnemonicParsing="false" text="Submit Bug Report"/>
+                    <MenuItem styleClass="osxHide" mnemonicParsing="false" text="About Sparrow"/>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <DecorationPane fx:id="rootStack" VBox.vgrow="ALWAYS">
+            <Rectangle styleClass="background-box" width="450" height="230" />
+            <HBox alignment="CENTER">
+                <VBox alignment="CENTER" spacing="15">
+                    <HBox><Text styleClass="background-text" text="File menu → "/><Hyperlink styleClass="background-text,background-link" text="New Wallet"/><Text styleClass="background-text" text=" or"/></HBox>
+                    <HBox><Text styleClass="background-text" text="File menu → "/><Hyperlink styleClass="background-text,background-link" text="Open Wallet"/><Text styleClass="background-text" text=" or"/></HBox>
+                    <HBox><Text styleClass="background-text" text="File menu → "/><Hyperlink styleClass="background-text,background-link" text="Import Wallet"/><Text styleClass="background-text" text=" or"/></HBox>
+                    <Text styleClass="background-text" text="drag files to open" />
+                </VBox>
+            </HBox>
+            <TabPane fx:id="tabs" />
+        </DecorationPane>
+
+        <StatusBar fx:id="statusBar" text="" minHeight="36">
+            <rightItems>
+                <UnlabeledToggleSwitch fx:id="serverToggle">
+                    <tooltip>
+                        <Tooltip text="Disconnected" />
+                    </tooltip>
+                </UnlabeledToggleSwitch>
+            </rightItems>
+        </StatusBar>
+    </children>
+</VBox>
