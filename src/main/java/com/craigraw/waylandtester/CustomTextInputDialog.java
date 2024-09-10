@@ -8,6 +8,7 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * A dialog that shows a text input control to the user.
@@ -23,26 +24,10 @@ public class CustomTextInputDialog extends Dialog<String> {
      *
      **************************************************************************/
 
-    private final GridPane grid;
     private final Label label;
     private final TextField textField;
-    private final String defaultValue;
 
 
-
-    /* ************************************************************************
-     *
-     * Constructors
-     *
-     **************************************************************************/
-
-    /**
-     * Creates a new TextInputDialog without a default value entered into the
-     * dialog {@link TextField}.
-     */
-    public CustomTextInputDialog() {
-        this("");
-    }
 
     /**
      * Creates a new TextInputDialog with the default value entered into the
@@ -59,34 +44,22 @@ public class CustomTextInputDialog extends Dialog<String> {
         label = new Label(dialogPane.getContentText());
         label.textProperty().bind(dialogPane.contentTextProperty());
 
-        this.defaultValue = defaultValue;
+        final VBox content = new VBox(10);
+        content.setPrefHeight(100);
+        content.getChildren().add(textField);
+        content.getChildren().add(label);
 
-        this.grid = new GridPane();
-        this.grid.setHgap(10);
-        this.grid.setMaxWidth(Double.MAX_VALUE);
-        this.grid.setAlignment(Pos.CENTER_LEFT);
+        getDialogPane().setContent(content);
 
         setTitle("Confirm");
         dialogPane.setHeaderText("Header Text");
         dialogPane.getStyleClass().add("text-input-dialog");
         dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-        updateGrid();
-
         setResultConverter((dialogButton) -> {
             ButtonData data = dialogButton == null ? null : dialogButton.getButtonData();
             return data == ButtonData.OK_DONE ? textField.getText() : null;
         });
-    }
-
-    private void updateGrid() {
-        grid.getChildren().clear();
-
-        grid.add(label, 0, 0);
-        grid.add(textField, 1, 0);
-        getDialogPane().setContent(grid);
-
-        Platform.runLater(() -> textField.requestFocus());
     }
 }
 
