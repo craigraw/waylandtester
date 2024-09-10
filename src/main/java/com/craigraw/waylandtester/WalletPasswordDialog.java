@@ -51,15 +51,15 @@ public class WalletPasswordDialog extends Dialog<String> {
 
         okButtonType = new javafx.scene.control.ButtonType(requirement.okButtonText, ButtonBar.ButtonData.OK_DONE);
         dialogPane.getButtonTypes().addAll(okButtonType);
-        Button okButton = (Button) dialogPane.lookupButton(okButtonType);
-        okButton.setPrefWidth(130);
-        BooleanBinding isInvalid = Bindings.createBooleanBinding(() -> (requirement == PasswordRequirement.LOAD && password.getText().isEmpty()) || (passwordConfirm.isVisible() && !password.getText().equals(passwordConfirm.getText())), password.textProperty(), passwordConfirm.textProperty());
-        okButton.disableProperty().bind(isInvalid);
+//        Button okButton = (Button) dialogPane.lookupButton(okButtonType);
+//        okButton.setPrefWidth(130);
+//        BooleanBinding isInvalid = Bindings.createBooleanBinding(() -> (requirement == PasswordRequirement.LOAD && password.getText().isEmpty()) || (passwordConfirm.isVisible() && !password.getText().equals(passwordConfirm.getText())), password.textProperty(), passwordConfirm.textProperty());
+//        okButton.disableProperty().bind(isInvalid);
 
-        if(requirement != PasswordRequirement.UPDATE_NEW && requirement != PasswordRequirement.UPDATE_CHANGE) {
-            passwordConfirm.setVisible(false);
-            passwordConfirm.setManaged(false);
-        }
+//        if(requirement != PasswordRequirement.UPDATE_NEW && requirement != PasswordRequirement.UPDATE_CHANGE) {
+//            passwordConfirm.setVisible(false);
+//            passwordConfirm.setManaged(false);
+//        }
 
         setResultConverter(dialogButton -> dialogButton == okButtonType ? password.getText() : null);
     }
