@@ -36,6 +36,7 @@ public class Main extends Application {
         primaryStage.show();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This is a modal dialog.");
+        alert.initOwner(primaryStage.getScene().getWindow());
         alert.showAndWait();
     }
 }
