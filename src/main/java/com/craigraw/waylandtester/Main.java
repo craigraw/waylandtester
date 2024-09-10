@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -42,7 +43,7 @@ public class Main extends Application {
             throw new IllegalStateException(e);
         }
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This is a modal dialog.");
+        TextInputDialog alert = new TextInputDialog("This is a modal dialog.");
         alert.initOwner(stage.getScene().getWindow());
         alert.showAndWait();
 
